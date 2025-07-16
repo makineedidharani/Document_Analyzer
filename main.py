@@ -411,42 +411,24 @@ def main():
             st.rerun()
 
         # --- NEW DROPDOWN TRANSLATION WIDGET ---
-    if "summary" in st.session_state and st.session_state.summary and not st.session_state.summary.startswith("Error"):
-        st.subheader("🗣️ Translate Summary")
-        INDIAN_LANGUAGES = {
-        "Assamese": "Assamese",
-        "Bengali": "Bengali",
-        "Bodo": "Bodo",
-        "Dogri": "Dogri",
-        "Gujarati": "Gujarati",
-        "Hindi": "Hindi",
-        "Kannada": "Kannada",
-        "Kashmiri": "Kashmiri",
-        "Konkani": "Konkani",
-        "Maithili": "Maithili",
-        "Malayalam": "Malayalam",
-        "Manipuri": "Manipuri",
-        "Marathi": "Marathi",
-        "Nepali": "Nepali",
-        "Odia": "Odia",
-        "Punjabi": "Punjabi",
-        "Sanskrit": "Sanskrit",
-        "Santali": "Santali",
-        "Sindhi": "Sindhi",
-        "Tamil": "Tamil",
-        "Telugu": "Telugu",
-        "Urdu": "Urdu"
-    }
-         selected_language = st.selectbox("Select a language:", options=list(INDIAN_LANGUAGES.keys()))
+        if "summary" in st.session_state and st.session_state.summary and not st.session_state.summary.startswith("Error"):
+            st.subheader("🗣️ Translate Summary")
 
-    if st.button("Translate", use_container_width=True, type="primary"):
-        if selected_language:
-            with st.spinner(f"Translating to {selected_language}..."):
-                formal_language_name = INDIAN_LANGUAGES[selected_language]
-                translated_text = translate_text_with_llm(st.session_state.summary, formal_language_name)
-                st.session_state.translated_text = translated_text
-                st.session_state.translated_lang = selected_language
-                st.rerun()
+            INDIAN_LANGUAGES = {
+                "Hindi": "Hindi", "Bengali": "Bengali", "Telugu": "Telugu", "Marathi": "Marathi", "Tamil": "Tamil",
+                "Urdu": "Urdu", "Gujarati": "Gujarati", "Kannada": "Kannada", "Odia": "Odia", "Punjabi": "Punjabi", "Malayalam": "Malayalam",
+            }
+
+            selected_language = st.selectbox("Select a language:", options=list(INDIAN_LANGUAGES.keys()))
+
+            if st.button("Translate", use_container_width=True, type="primary"):
+                if selected_language:
+                    with st.spinner(f"Translating to {selected_language}..."):
+                        formal_language_name = INDIAN_LANGUAGES[selected_language]
+                        translated_text = translate_text_with_llm(st.session_state.summary, formal_language_name)
+                        st.session_state.translated_text = translated_text
+                        st.session_state.translated_lang = selected_language
+                        st.rerun()
         # --- END OF NEW WIDGET ---
             
         st.subheader("💡 Sample Questions")
