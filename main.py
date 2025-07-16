@@ -22,150 +22,49 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for better styling and the custom sidebar toggle button
+# Custom CSS for better styling
 st.markdown("""
 <style>
-    .stDeployButton {
+    .stDeployButton, .stToolbar, div[data-testid="stStatusWidget"], .stActionButton, footer, #MainMenu {
         display: none !important;
     }
-    .stToolbar {
-        display: none !important;
-    }
-
-
-    div[data-testid="stStatusWidget"] {
-        display: none !important;
-    }
-    .stActionButton {
-        display: none !important;
-    }
-    footer {
-        display: none !important;
-    }
-    #MainMenu {
-        display: none !important;
-    }
-    /* DO NOT hide header or .stApp > header, as this can break sidebar toggle */
-    /* header {
-        display: none !important;
-    }
-    .stApp > header {
-        display: none !important;
-    } */
-    
     .main-header {
-        text-align: center;
-        padding: 2rem 0;
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border-radius: 10px;
-        margin-bottom: 2rem;
+        text-align: center; padding: 2rem 0; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        color: white; border-radius: 10px; margin-bottom: 2rem;
     }
-    
     .summary-card {
-        background: #ffffff;
-        padding: 2rem;
-        border-radius: 15px;
-        border-left: 5px solid #667eea;
-        margin: 1.5rem 0;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #ffffff; padding: 2rem; border-radius: 15px; border-left: 5px solid #667eea;
+        margin: 1.5rem 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    
-    .summary-card h3 {
-        color: #667eea;
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-    
     .summary-card h4 {
-        color: #333;
-        margin: 1rem 0 0.5rem 0;
-        font-size: 1.1rem;
-        font-weight: 600;
+        color: #333; margin: 1rem 0 0.5rem 0; font-size: 1.1rem; font-weight: 600;
     }
-    
     .summary-card p, .summary-card li {
-        color: #555;
-        line-height: 1.6;
-        margin-bottom: 0.5rem;
+        color: #555; line-height: 1.6; margin-bottom: 0.5rem;
     }
-    
     .summary-card ul {
-        padding-left: 1.5rem;
-        margin-bottom: 1rem;
+        padding-left: 1.5rem; margin-bottom: 1rem;
     }
-    
-    .question-card {
-        background: #ffffff;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        margin: 1.5rem 0;
-        border-left: 5px solid #007bff;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    .question-card, .answer-card {
+        background: #ffffff; padding: 2rem; border-radius: 15px; margin: 1.5rem 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    
-    .question-card h4 {
-        color: #007bff;
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-    
-    .question-card p {
-        color: #333;
-        line-height: 1.6;
-        font-size: 1rem;
-        font-weight: 500;
-    }
-    
-    .answer-card {
-        background: #ffffff;
-        padding: 2rem;
-        border-radius: 15px;
-        border-left: 5px solid #28a745;
-        margin: 1.5rem 0;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    .answer-card h4 {
-        color: #28a745;
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-    
-    .answer-card p {
-        color: #333;
-        line-height: 1.8;
-        font-size: 1rem;
-    }
-    
+    .question-card { border-left: 5px solid #007bff; }
+    .answer-card { border-left: 5px solid #28a745; }
+    .question-card h4 { color: #007bff; }
+    .answer-card h4 { color: #28a745; }
+    .question-card p, .answer-card p { color: #333; line-height: 1.6; }
     .upload-section {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem;
-        border-radius: 10px;
-        text-align: center;
-        margin: 1rem 0;
-        color: white;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem;
+        border-radius: 10px; text-align: center; margin: 1rem 0; color: white;
     }
-    
     .error-card {
-        background: #ffebee;
-        padding: 1.5rem;
-        border-radius: 10px;
-        border-left: 4px solid #f44336;
-        margin: 1rem 0;
-        border: 1px solid #ffcdd2;
-    }   
+        background: #ffebee; padding: 1.5rem; border-radius: 10px;
+        border-left: 4px solid #f44336; margin: 1rem 0; border: 1px solid #ffcdd2;
+    }
 </style>
 """, unsafe_allow_html=True)
 
-
-## Removed floating sidebar toggle button and its message as requested
 
 def split_text_into_chunks(text, chunk_size=3000, overlap=300):
     if not text or len(text.strip()) == 0:
@@ -217,7 +116,7 @@ def format_summary_for_display(summary_text):
                 summary_text = "\n".join(lines[i+1:])
                 break
 
-    formatted = re.sub(r'\\(.?)\\*', r'<h4>\1</h4>', summary_text)
+    formatted = re.sub(r'\*\*(.*?)\*\*', r'<h4>\1</h4>', summary_text)
     lines = formatted.split('\n')
     formatted_lines = []
     in_list = False
@@ -341,7 +240,7 @@ def translate_text_with_llm(text_to_translate, target_language):
 def generate_comprehensive_summary(text_chunks):
     if not text_chunks:
         return "No content available for summarization."
-    summary_prompt = """Analyze this bid/tender document and extract the following key information. If any information is not found, clearly state "Not mentioned" or "Not found":\n\n*BASIC INFORMATION:\n- Tender Number/Reference:\n- Name of Work/Project:\n- Issuing Department/Organization:\n\nFINANCIAL DETAILS:\n- Estimated Contract Value:\n- EMD (Earnest Money Deposit):\n- EMD Exemption (if any):\n- Performance Security:\n\nTIMELINE:\n- Bid Submission Deadline:\n- Technical Bid Opening:\n- Contract Duration:\n\nREQUIREMENTS:*\n- Key Eligibility Criteria:\n- Required Documents:\n- Technical Specifications (brief):\n- Payment Terms:\n\nProvide only the information that is clearly mentioned in the document."""
+    summary_prompt = """Analyze this bid/tender document and extract the following key information. If any information is not found, clearly state "Not mentioned" or "Not found":\n\n**BASIC INFORMATION:**\n- Tender Number/Reference:\n- Name of Work/Project:\n- Issuing Department/Organization:\n\n**FINANCIAL DETAILS:**\n- Estimated Contract Value:\n- EMD (Earnest Money Deposit):\n- EMD Exemption (if any):\n- Performance Security:\n\n**TIMELINE:**\n- Bid Submission Deadline:\n- Technical Bid Opening:\n- Contract Duration:\n\n**REQUIREMENTS:**\n- Key Eligibility Criteria:\n- Required Documents:\n- Technical Specifications (brief):\n- Payment Terms:\n\nProvide only the information that is clearly mentioned in the document."""
     all_summaries = []
     with st.spinner("Analyzing document sections..."):
         progress_bar = st.progress(0)
@@ -522,13 +421,13 @@ def main():
         if st.session_state.qa_history:
             with st.expander(f"📚 Q&A History ({len(st.session_state.qa_history)} questions)"):
                 for i, (q, a) in enumerate(reversed(st.session_state.qa_history[-10:])):
-                    st.markdown(f"*Q{len(st.session_state.qa_history)-i}:* {q}")
-                    if a.startswith("Error"): st.error(f"*A:* {a}")
-                    else: st.markdown(f"*A:* {a}")
+                    st.markdown(f"**Q{len(st.session_state.qa_history)-i}:** {q}")
+                    if a.startswith("Error"): st.error(f"**A:** {a}")
+                    else: st.markdown(f"**A:** {a}")
                     st.markdown("---")
 
     st.markdown("---")
     st.markdown("""<div style="text-align: center; padding: 2rem; color: #666;"><p>🚀 Bid Analyser Pro v2.0</p></div>""", unsafe_allow_html=True)
 
 if __name__ == "__main__":
-    main()
+    main() 
