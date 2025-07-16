@@ -415,29 +415,29 @@ def main():
             st.subheader("🗣️ Translate Summary")
 
           INDIAN_LANGUAGES = {
-    "Assamese": "Assamese",
-    "Bengali": "Bengali",
-    "Bodo": "Bodo",
-    "Dogri": "Dogri",
-    "Gujarati": "Gujarati",
-    "Hindi": "Hindi",
-    "Kannada": "Kannada",
-    "Kashmiri": "Kashmiri",
-    "Konkani": "Konkani",
-    "Maithili": "Maithili",
-    "Malayalam": "Malayalam",
-    "Manipuri": "Manipuri",
-    "Marathi": "Marathi",
-    "Nepali": "Nepali",
-    "Odia": "Odia",
-    "Punjabi": "Punjabi",
-    "Sanskrit": "Sanskrit",
-    "Santali": "Santali",
-    "Sindhi": "Sindhi",
-    "Tamil": "Tamil",
-    "Telugu": "Telugu",
-    "Urdu": "Urdu"
-}
+            "Assamese": "Assamese",
+            "Bengali": "Bengali",
+            "Bodo": "Bodo",
+            "Dogri": "Dogri",
+            "Gujarati": "Gujarati",
+            "Hindi": "Hindi",
+            "Kannada": "Kannada",
+            "Kashmiri": "Kashmiri",
+            "Konkani": "Konkani",
+            "Maithili": "Maithili",
+            "Malayalam": "Malayalam",
+            "Manipuri": "Manipuri",
+            "Marathi": "Marathi",
+            "Nepali": "Nepali",
+            "Odia": "Odia",
+            "Punjabi": "Punjabi",
+            "Sanskrit": "Sanskrit",
+            "Santali": "Santali",
+            "Sindhi": "Sindhi",
+            "Tamil": "Tamil",
+            "Telugu": "Telugu",
+            "Urdu": "Urdu"
+        }
 
             selected_language = st.selectbox("Select a language:", options=list(INDIAN_LANGUAGES.keys()))
 
