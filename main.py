@@ -411,12 +411,9 @@ def main():
             st.rerun()
 
         # --- NEW DROPDOWN TRANSLATION WIDGET ---
-        import streamlit as st
-
-if "summary" in st.session_state and st.session_state.summary and not st.session_state.summary.startswith("Error"):
-    st.subheader("🗣️ Translate Summary")
-
-    INDIAN_LANGUAGES = {
+    if "summary" in st.session_state and st.session_state.summary and not st.session_state.summary.startswith("Error"):
+        st.subheader("🗣️ Translate Summary")
+        INDIAN_LANGUAGES = {
         "Assamese": "Assamese",
         "Bengali": "Bengali",
         "Bodo": "Bodo",
@@ -440,8 +437,7 @@ if "summary" in st.session_state and st.session_state.summary and not st.session
         "Telugu": "Telugu",
         "Urdu": "Urdu"
     }
-
-    selected_language = st.selectbox("Select a language:", options=list(INDIAN_LANGUAGES.keys()))
+         selected_language = st.selectbox("Select a language:", options=list(INDIAN_LANGUAGES.keys()))
 
     if st.button("Translate", use_container_width=True, type="primary"):
         if selected_language:
