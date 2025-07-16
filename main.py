@@ -411,7 +411,9 @@ def main():
             st.rerun()
 
         # --- NEW DROPDOWN TRANSLATION WIDGET ---
-       if "summary" in st.session_state and st.session_state.summary and not st.session_state.summary.startswith("Error"):
+        import streamlit as st
+
+if "summary" in st.session_state and st.session_state.summary and not st.session_state.summary.startswith("Error"):
     st.subheader("🗣️ Translate Summary")
 
     INDIAN_LANGUAGES = {
@@ -439,16 +441,16 @@ def main():
         "Urdu": "Urdu"
     }
 
-            selected_language = st.selectbox("Select a language:", options=list(INDIAN_LANGUAGES.keys()))
+    selected_language = st.selectbox("Select a language:", options=list(INDIAN_LANGUAGES.keys()))
 
-            if st.button("Translate", use_container_width=True, type="primary"):
-                if selected_language:
-                    with st.spinner(f"Translating to {selected_language}..."):
-                        formal_language_name = INDIAN_LANGUAGES[selected_language]
-                        translated_text = translate_text_with_llm(st.session_state.summary, formal_language_name)
-                        st.session_state.translated_text = translated_text
-                        st.session_state.translated_lang = selected_language
-                        st.rerun()
+    if st.button("Translate", use_container_width=True, type="primary"):
+        if selected_language:
+            with st.spinner(f"Translating to {selected_language}..."):
+                formal_language_name = INDIAN_LANGUAGES[selected_language]
+                translated_text = translate_text_with_llm(st.session_state.summary, formal_language_name)
+                st.session_state.translated_text = translated_text
+                st.session_state.translated_lang = selected_language
+                st.rerun()
         # --- END OF NEW WIDGET ---
             
         st.subheader("💡 Sample Questions")
