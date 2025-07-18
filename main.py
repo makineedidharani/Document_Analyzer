@@ -316,7 +316,21 @@ def main():
             # --- MODIFIED: EXPANDED DICTIONARY OF LANGUAGES ---
             LANGUAGES = {
                 # Indian Languages
+                "Assamese": "Assamese",
+                "Bengali": "Bengali",
+                "Bodo": "Bodo",
+                "Dogri": "Dogri",
                 "Hindi": "Hindi",
+                "Kashmiri": "Kashmiri",
+                "Konkani": "Konkani",
+                "Maithili": "Maithili",
+                "Manipuri": "Manipuri",
+                "Nepali": "Nepali",
+                "Odia": "odia",
+                "Sanskrit": "Sanskrit",
+                "Santali": "Santali",
+                "Sindhi": "Sindhi",
+                "Urdu": "urdu",
                 "Bengali": "Bengali",
                 "Telugu": "Telugu",
                 "Marathi": "Marathi",
