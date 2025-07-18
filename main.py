@@ -340,6 +340,11 @@ def main():
                 "Punjabi": "Punjabi",
                 "Gujarati": "Gujarati",
                 # World Languages
+                "English": "English",
+                "Turkish": "Turkish",
+                "Italian": "Italian",
+                "Korean": "Korean",
+                "Turkish": "Turkish",
                 "Spanish": "Spanish",
                 "French": "French",
                 "German": "German",
@@ -348,6 +353,19 @@ def main():
                 "Russian": "Russian",
                 "Arabic": "Arabic",
                 "Portuguese": "Portuguese",
+                "Dutch": "Dutch",
+                "Polish": "Polish",
+                "Swedish": "Swedish",
+                "Greek": "Greek",
+                "Hebrew": "Hebrew",
+                "Vietnamese": "Vietnamese",
+                "Thai": "Thai",
+                "Indonesian": "Indonesian",
+                "Ukrainian": "Ukrainian",
+                "Romanian": "Romanian",
+                "Czech": "Czech",
+                "Hungarian": "Hungarian",
+                "Finnish": "Finnish", 
             }
 
             selected_language = st.selectbox(
